@@ -1,11 +1,16 @@
 import os
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-from moviepy.editor import ImageClip, VideoClip, AudioFileClip, concatenate_videoclips, CompositeAudioClip
 import logging
 import streamlit as st
 import tempfile
 from pathlib import Path
+
+try:
+    from moviepy.editor import ImageClip, VideoClip, AudioFileClip, concatenate_videoclips, CompositeAudioClip
+except ImportError:
+    st.error("Failed to import moviepy. Please make sure it's installed: `pip install moviepy`")
+    st.stop()
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
